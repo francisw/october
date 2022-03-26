@@ -1,0 +1,48 @@
+{
+"client_id": 10001,
+"client_type": "hotel",
+"client_data": {
+"company_name": "Busy Rooms Hotel",
+"street": "street",
+"street_no": "123",
+"postal_code": "12345",
+"city": "city",
+"country": "ES",
+"telephone": "123-45678",
+"email": "francis@busy-rooms.com",
+"website": "http://localhost:8080"
+},
+"project": {
+"id": "0ZwVkAwDgZGxkZwR5YGuyAmpkZ2AxZGNjMwxlBJL1ZQp4AGtkZJVlZQNjLGtm",
+"name": "BRCMS Basic",
+"owner": "Busy Rooms CMS"
+},
+"content_models": {
+"extra": true,
+"room": true,
+"restaurant": true,
+"conference_room": true,
+"offer": true,
+"location": true,
+"event": true,
+"contact_person": true,
+"press_relase": false,
+"glossary": false
+},
+"currency": "eur",
+"locales": [
+{
+  "code": "de",
+  "name": "Deutsch",
+  "is_default": "0",
+  "is_enabled": "1"
+},
+{
+"code": "en",
+"name": "English",
+"is_default": "1",
+"is_enabled": "1"
+}
+],
+"theme": "karajan"
+}

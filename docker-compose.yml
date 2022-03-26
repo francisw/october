@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ./app_data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: builder
+  app:
+    image: tiredofit/nginx-php-fpm:alpine-8.0
+    volumes:
+      - ./app:/www/html
+      - ./app_data:/var/app_data
+    environment:
+      - PHP_TIMEOUT=60s
+      - DEBUG_LOCAL=localhost
+      - APP_ID=12345
+      - APP_URL=http://localhost:8080
+      - PHP_ENABLE_REDIS=TRUE
+    ports:
+      - 8080:80
+    restart: always
