@@ -5,6 +5,8 @@ services:
     image: redis:latest
     ports:
       - 6379:6379
+    networks:
+      - services
   mysql:
     image: mysql:5.7
     ports:
@@ -13,8 +15,13 @@ services:
       - ./app_data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: builder
+    networks:
+      - services
   app:
     image: tiredofit/nginx-php-fpm:alpine-8.0
+    depends_on:
+      - "redis"
+      - "mysql"
     volumes:
       - ./app:/www/html
       - ./app_data:/var/app_data
@@ -23,7 +30,17 @@ services:
       - DEBUG_LOCAL=localhost
       - APP_ID=12345
       - APP_URL=http://localhost:8080
+      - APP_HOST=localhost:8080
       - PHP_ENABLE_REDIS=TRUE
     ports:
       - 8080:80
+    networks:
+      - services
+      - proxy
     restart: always
+
+networks:
+  proxy:
+    external: true
+  services:
+    external: true
